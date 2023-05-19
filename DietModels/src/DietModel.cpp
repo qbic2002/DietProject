@@ -6,7 +6,13 @@
 
 namespace diet {
     std::string DietModel::getField(const std::string& fieldName) const {
-        std::string strWithQuotes = jsonData_[fieldName];
-        return {strWithQuotes.begin() + 1, strWithQuotes.end() - 1}; // return string without first and last char
+        std::string value = to_string(jsonData_[fieldName]);
+        if (value.starts_with('"') && value.ends_with('"'))
+            return {value.begin() + 1, value.end() - 1}; // return string without first and last char
+        return value;
+    }
+
+    void DietModel::setField(const std::string& fieldName, const std::string& value) {
+        jsonData_[fieldName] = value;
     }
 } // diet

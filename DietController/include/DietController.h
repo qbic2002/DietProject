@@ -6,14 +6,15 @@
 #define DIETPROJECT_DIETCONTROLLER_H
 
 
+#include <string>
+
 namespace diet {
     class DietController {
     public:
-        DietController() = default;
-        void start();
+        virtual void invoke(const std::string& params) const = 0;
+        virtual ~DietController() = default;
     private:
-        void printGreet() const;
-        void askForInitHeight() const;
+        void redirect(const std::string& controllerName, const std::string& params);
     };
 }
 

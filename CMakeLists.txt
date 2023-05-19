@@ -10,20 +10,25 @@ FetchContent_MakeAvailable(json)
 
 
 include_directories(include)
+include_directories(utils/include)
 include_directories(json/include)
 include_directories(DietController/include)
 include_directories(DietService/include)
 include_directories(DietViews/include)
 include_directories(DietModels/include)
+include_directories(ConsoleInputManager/include)
 
 add_executable(DietProject
         main.cpp
         DietService/src/DietService.cpp
-        DietController/src/DietController.cpp
-        src/DietContext.cpp
-        DietViews/src/View.cpp
+        src/DietApp.cpp
+        DietViews/src/ViewEngine.cpp
         DietModels/src/DietModel.cpp
-        DietViews/src/ViewGreeting.cpp
-        DietViews/src/ViewAskHeight.cpp)
+        utils/src/FileUtils.cpp
+        ConsoleInputManager/src/ConsoleInputManager.cpp
+        DietController/src/DietController.cpp
+        DietController/src/DietControllerGreeting.cpp
+        DietController/src/DietControllerExit.cpp
+        )
 
 target_link_libraries(DietProject PRIVATE nlohmann_json::nlohmann_json)

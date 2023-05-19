@@ -13,8 +13,9 @@ namespace diet {
     class DietModel {
     public:
         std::string getField(const std::string& fieldName) const;
+        void setField(const std::string& fieldName, const std::string& value);
     private:
-        nlohmann::json jsonData_;
+        nlohmann::json jsonData_{};
     };
 
 } // diet
