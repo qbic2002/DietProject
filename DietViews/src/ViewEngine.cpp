@@ -12,16 +12,17 @@ namespace diet {
         diet::DietApp::getInstance()->getConsoleInputManager()->lastViewName = viewName;
         diet::DietApp::getInstance()->getConsoleInputManager()->lastModel = model;
 
-        std::string templateString = utils::readFile(diet::DietApp::getInstance()->findView(viewName).string()); //TODO findView in App
+        std::string templateString = utils::readFile(diet::DietApp::getInstance()->findView(viewName).string());
         std::string renderString = parseTemplate(templateString, model);
 
         setNextController(templateString);
 
-        std::cout << renderString << std::endl;
+        clearConsole();
+        std::cout << renderString;
     }
 
     std::string ViewEngine::parseTemplate(const std::string& templateString, const DietModel& model) {
-        std::string renderString = templateString;
+        std::string renderString = parseIf(templateString, model);
         std::size_t pos = 0;
         while (true) {
             pos = renderString.find("{{", pos);
@@ -71,5 +72,63 @@ namespace diet {
             diet::DietApp::getInstance()->getConsoleInputManager()->anyKey = false;
 
         }
+    }
+
+    std::string ViewEngine::parseIf(const std::string& templateString, const DietModel& model) {
+        std::string renderString = templateString;
+        std::size_t pos = 0;
+        while (true) {
+            pos = renderString.find("{#");
+            if (pos == std::string::npos) {
+                break;
+            }
+
+            std::string iterationResultString;
+
+            std::size_t closingPos = renderString.find("#}", pos);
+            if (closingPos == std::string::npos) {
+                throw std::runtime_error("incorrect template");
+            }
+
+            std::string paramName = renderString.substr(pos + 2, closingPos - pos - 2);
+            std::string paramValue = model.getField(paramName);
+            std::size_t elsePos = renderString.find("{!!}", closingPos);
+            if (elsePos == std::string::npos) {
+                std::size_t endifPos = renderString.find("{//}", closingPos);
+                if (endifPos == std::string::npos) {
+                    throw std::runtime_error("incorrect template");
+                }
+
+                if (paramValue == "true") {
+                    iterationResultString = renderString.substr(closingPos + 2, endifPos - (closingPos + 2));
+                }
+                renderString.erase(pos, endifPos + 4 - (pos));
+            }
+            if (elsePos != std::string::npos) {
+                std::size_t endifPos = renderString.find("{//}", elsePos);
+                if (endifPos == std::string::npos) {
+                    throw std::runtime_error("incorrect template");
+                }
+                if (paramValue == "true") {
+                    iterationResultString = renderString.substr(closingPos + 2, elsePos - (closingPos + 2));
+
+                    renderString.erase(pos, endifPos + 4 - (pos));
+                }
+                if (paramValue == "false") {
+                    iterationResultString = renderString.substr(elsePos + 4, endifPos - (elsePos + 4));
+
+                    renderString.erase(pos, endifPos + 4 - (pos));
+                }
+            }
+
+            renderString.insert(pos, iterationResultString);
+            pos = 0;
+        }
+
+        return renderString;
+    }
+
+    void ViewEngine::clearConsole() {
+        system("cls");
     }
 } // diet

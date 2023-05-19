@@ -5,6 +5,12 @@
 #include "ViewEngine.h"
 #include "DietControllerGreeting.h"
 #include "DietControllerExit.h"
+#include "Test.h"
+#include "DietControllerInitHeight.h"
+#include "DietControllerSetHeight.h"
+#include "DietControllerInitWeight.h"
+#include "DietControllerSetWeight.h"
+#include "DietControllerIdealWeight.h"
 
 //using json = nlohmann::json;
 //using namespace nlohmann::literals;
@@ -14,7 +20,13 @@ int main() {
     diet::DietApp::getInstance()->init();
     diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
 
+    //    diet::DietApp::getInstance()->registerController("test", new diet::Test());
     diet::DietApp::getInstance()->registerController("greeting", new diet::DietControllerGreeting());
+    diet::DietApp::getInstance()->registerController("initHeight", new diet::DietControllerInitHeight());
+    diet::DietApp::getInstance()->registerController("setHeight", new diet::DietControllerSetHeight());
+    diet::DietApp::getInstance()->registerController("initWeight", new diet::DietControllerInitWeight());
+    diet::DietApp::getInstance()->registerController("setWeight", new diet::DietControllerSetWeight());
+    diet::DietApp::getInstance()->registerController("idealWeight", new diet::DietControllerIdealWeight());
     diet::DietApp::getInstance()->registerController("exit", new diet::DietControllerExit());
 
     diet::DietApp::getInstance()->start();

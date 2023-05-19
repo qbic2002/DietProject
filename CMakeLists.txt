@@ -29,6 +29,10 @@ add_executable(DietProject
         DietController/src/DietController.cpp
         DietController/src/DietControllerGreeting.cpp
         DietController/src/DietControllerExit.cpp
-        )
+        DietController/src/DietControllerInitHeight.cpp
+        DietController/src/DietControllerSetHeight.cpp
+        DietController/src/DietControllerInitWeight.cpp
+        DietController/src/DietControllerSetWeight.cpp
+        DietController/src/DietControllerIdealWeight.cpp)
 
 target_link_libraries(DietProject PRIVATE nlohmann_json::nlohmann_json)

@@ -13,8 +13,9 @@ namespace diet {
     public:
         virtual void invoke(const std::string& params) const = 0;
         virtual ~DietController() = default;
-    private:
-        void redirect(const std::string& controllerName, const std::string& params);
+
+    protected:
+        void redirect(const std::string& controllerName, const std::string& params = "") const;
     };
 }
 

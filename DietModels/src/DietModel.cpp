@@ -11,8 +11,4 @@ namespace diet {
             return {value.begin() + 1, value.end() - 1}; // return string without first and last char
         return value;
     }
-
-    void DietModel::setField(const std::string& fieldName, const std::string& value) {
-        jsonData_[fieldName] = value;
-    }
 } // diet

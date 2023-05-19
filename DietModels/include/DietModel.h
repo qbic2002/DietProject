@@ -13,7 +13,11 @@ namespace diet {
     class DietModel {
     public:
         std::string getField(const std::string& fieldName) const;
-        void setField(const std::string& fieldName, const std::string& value);
+
+        template<class T>
+        void setField(const std::string& fieldName, const T& value){
+            jsonData_[fieldName] = value;
+        }
     private:
         nlohmann::json jsonData_{};
     };

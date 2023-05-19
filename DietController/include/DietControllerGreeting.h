@@ -9,7 +9,7 @@
 
 namespace diet {
 
-    class DietControllerGreeting : public DietController{
+    class DietControllerGreeting : public DietController {
     public:
         void invoke(const std::string& params) const override;
     };

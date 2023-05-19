@@ -12,9 +12,11 @@ namespace diet {
     class ViewEngine {
     public:
         static void render(const std::string& viewName, const diet::DietModel& model);
+        static void clearConsole();
     private:
         static std::string parseTemplate(const std::string& templateString, const DietModel& model);
         static void setNextController(const std::string& templateString);
+        static std::string parseIf(const std::string& templateString, const DietModel& model);
     };
 
 } // diet

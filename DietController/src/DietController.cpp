@@ -5,7 +5,7 @@
 #include "DietController.h"
 #include "DietApp.h"
 
-void diet::DietController::redirect(const std::string& controllerName, const std::string& params) {
+void diet::DietController::redirect(const std::string& controllerName, const std::string& params) const {
     auto controller = diet::DietApp::getInstance()->findController(controllerName);
     controller->invoke(params);
 }
