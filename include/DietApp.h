@@ -14,8 +14,8 @@ namespace diet {
 
     class DietApp {
     public:
-        void init(); //initialize Services and Controllers
-        void start();
+        void init(); // initialize Services and Controllers
+        void start(); // start app
 
         // getters
         DietService* getDietService() const;

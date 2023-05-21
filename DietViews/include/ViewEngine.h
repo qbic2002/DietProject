@@ -7,6 +7,7 @@
 
 #include "DietModel.h"
 #include "TemplateToken.h"
+#include "TokenContainer.h"
 
 namespace diet {
 
@@ -15,9 +16,9 @@ namespace diet {
         static void render(const std::string& viewName, const diet::DietModel& model);
         static void clearConsole();
     private:
-        static std::string parseTemplate(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
-        static void parseParamTokens(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
-        static void parseIf(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
+        static std::string parseTemplate(diet::TokenContainer& tokens, const DietModel& model);
+        static void parseParamTokens(diet::TokenContainer& tokens, const DietModel& model);
+        static void parseIf(diet::TokenContainer& tokens, const DietModel& model);
     };
 
 } // diet

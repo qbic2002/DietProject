@@ -14,6 +14,7 @@
 #include "TokenElse.h"
 #include "TokenCloseIF.h"
 #include "TokenController.h"
+#include "TokenContainer.h"
 
 namespace diet {
     void ViewEngine::render(const std::string& viewName, const DietModel& model) {
@@ -21,24 +22,16 @@ namespace diet {
         diet::DietApp::getInstance()->getConsoleInputManager()->setLastModel(model);
 
         std::string templateString = utils::readFile(diet::DietApp::getInstance()->findView(viewName).string());
-        std::vector<diet::TemplateToken*> tokens; // TODO RAII Token Container
-        try {
-            diet::TemplateTokenizer::tokenize(templateString, tokens);
-        } catch (...) {
-            for (auto& token: tokens) {
-                delete token;
-                token = nullptr;
-            }
+        diet::TokenContainer tokens;
+        diet::TemplateTokenizer::tokenize(templateString, tokens);
 
-            throw;
-        }
         std::string renderString = parseTemplate(tokens, model);
 
         clearConsole();
         std::cout << renderString;
     }
 
-    std::string ViewEngine::parseTemplate(std::vector<diet::TemplateToken*>& tokens, const DietModel& model) {
+    std::string ViewEngine::parseTemplate(diet::TokenContainer& tokens, const DietModel& model) {
         parseParamTokens(tokens, model);
         parseIf(tokens, model);
 
@@ -46,7 +39,7 @@ namespace diet {
             throw std::runtime_error("incorrect template");
         }
 
-        auto controllerToken = (diet::TokenController*)tokens[tokens.size() - 1];
+        auto controllerToken = (diet::TokenController*) tokens[tokens.size() - 1];
 
         bool anyKey = controllerToken->getAnyKey();
         std::string controllerName = controllerToken->getControllerName();
@@ -59,16 +52,15 @@ namespace diet {
             if (token->getType() != TemplateToken::TokenType::CONTROLLER) {
                 renderString.append(token->getString());
             }
-            delete token;
-            token = nullptr;
         }
 
         return renderString;
     }
-    void ViewEngine::parseParamTokens(std::vector<diet::TemplateToken*>& tokens, const DietModel& model) {
-        for (auto& token : tokens) {
+
+    void ViewEngine::parseParamTokens(diet::TokenContainer& tokens, const DietModel& model) {
+        for (auto& token: tokens) {
             if (token->getType() == TemplateToken::TokenType::PARAM) {
-                auto paramToken = (diet::TokenParam*)token;
+                auto paramToken = (diet::TokenParam*) token;
                 std::string value = model.getField(paramToken->getParamName());
                 delete token;
                 token = new diet::TokenContent(value);
@@ -76,19 +68,19 @@ namespace diet {
         }
     }
 
-    void ViewEngine::parseIf(std::vector<diet::TemplateToken*>& tokens, const DietModel& model) {
+    void ViewEngine::parseIf(diet::TokenContainer& tokens, const DietModel& model) {
         int priority = 0;
-        for (auto& token : tokens) {
+        for (auto& token: tokens) {
             if (token->getType() == TemplateToken::TokenType::IF) {
-                auto ifToken = (diet::TokenIF*)token;
-                ifToken->setPriority(priority++);
+                auto ifToken = (diet::TokenIF*) token;
+                ifToken->setPriority(++priority);
             }
             if (token->getType() == TemplateToken::TokenType::ELSE) {
-                auto elseToken = (diet::TokenElse*)token;
+                auto elseToken = (diet::TokenElse*) token;
                 elseToken->setPriority(priority);
             }
             if (token->getType() == TemplateToken::TokenType::CLOSE_IF) {
-                auto closeIfToken = (diet::TokenCloseIF*)token;
+                auto closeIfToken = (diet::TokenCloseIF*) token;
                 closeIfToken->setPriority(priority--);
                 if (priority < 0) {
                     throw std::runtime_error("incorrect template");
@@ -120,13 +112,13 @@ namespace diet {
                 break;
             }
 
-            auto ifToken = (diet::TokenIF*)tokens[maxInd];
+            auto ifToken = (diet::TokenIF*) tokens[maxInd];
             std::string value = model.getField(ifToken->getParamName());
             int elseInd = -1;
             for (int i = maxInd; i < tokens.size(); ++i) {
                 auto token = tokens[i];
                 if (token->getType() == TemplateToken::TokenType::ELSE) {
-                    auto elseToken = (diet::TokenElse*)token;
+                    auto elseToken = (diet::TokenElse*) token;
                     if (elseToken->getPriority() == maxPriority) {
                         elseInd = i;
                         break;
@@ -137,8 +129,7 @@ namespace diet {
             for (int i = maxInd; i < tokens.size(); ++i) {
                 auto token = tokens[i];
                 if (token->getType() == TemplateToken::TokenType::CLOSE_IF) {
-                    auto closeIfToken = (diet::TokenCloseIF*)token;
-                    closeIfToken->setPriority(priority--);
+                    auto closeIfToken = (diet::TokenCloseIF*) token;
                     if (closeIfToken->getPriority() == maxPriority) {
                         closeIfInd = i;
                         break;
@@ -176,8 +167,8 @@ namespace diet {
                 tokens[i] = nullptr;
             }
 
-            tokens.erase(tokens.cbegin() + maxInd, tokens.cbegin() + closeIfInd + 1);
-            tokens.insert(tokens.cbegin() + maxInd, new diet::TokenContent(replaceString));
+            tokens.erase(tokens.begin() + maxInd, tokens.begin() + closeIfInd + 1);
+            tokens.insert(tokens.begin() + maxInd, new diet::TokenContent(replaceString));
         }
     }
 

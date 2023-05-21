@@ -26,4 +26,11 @@ namespace diet {
     void DietService::setInitialWeight(float initialWeight) {
         initialWeight_ = initialWeight;
     }
+
+    const std::string& DietService::getName() const {
+        return name_;
+    }
+    void DietService::setName(const std::string& name) {
+        name_ = name;
+    }
 } // diet

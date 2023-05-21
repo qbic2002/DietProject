@@ -42,6 +42,9 @@ add_executable(DietProject
         DietViews/src/TemplateTokenizer.cpp
         DietViews/src/TokenParam.cpp
         DietViews/src/TokenController.cpp
+        DietViews/src/TokenContainer.cpp
+        DietController/src/DietControllerInitName.cpp
+        DietController/src/DietControllerSetName.cpp
         )
 
 target_link_libraries(DietProject PRIVATE nlohmann_json::nlohmann_json)

@@ -6,13 +6,14 @@
 #define DIETPROJECT_TEMPLATETOKENIZER_H
 
 #include "TemplateToken.h"
+#include "TokenContainer.h"
 #include <vector>
 
 namespace diet {
 
     class TemplateTokenizer {
     public:
-        static void tokenize(const std::string& input, std::vector<diet::TemplateToken*> & tokens);
+        static void tokenize(const std::string& input, diet::TokenContainer & tokens);
     };
 
 }

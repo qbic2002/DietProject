@@ -14,7 +14,7 @@
 
 namespace diet {
 
-    void TemplateTokenizer::tokenize(const std::string& input, std::vector<diet::TemplateToken*>& tokens) {
+    void TemplateTokenizer::tokenize(const std::string& input, diet::TokenContainer& tokens) {
         std::size_t pos = 0;
         while (true) {
             pos = input.find("{#", pos);
@@ -26,7 +26,7 @@ namespace diet {
                 throw std::runtime_error("incorrect template");
             }
 
-            auto ifToken = new diet::TokenIF(input.substr(pos, closingPos + 2 - pos));
+            diet::TemplateToken* ifToken = new diet::TokenIF(input.substr(pos, closingPos + 2 - pos));
             ifToken->setStartPos(pos);
             ifToken->setEndPos(closingPos + 2);
             tokens.push_back(ifToken);
@@ -40,7 +40,7 @@ namespace diet {
                 break;
             }
 
-            auto elseToken = new diet::TokenElse("{!!}");
+            diet::TemplateToken* elseToken = new diet::TokenElse("{!!}");
             elseToken->setStartPos(pos);
             elseToken->setEndPos(pos + 4);
             tokens.push_back(elseToken);
@@ -54,7 +54,7 @@ namespace diet {
                 break;
             }
 
-            auto closeIfToken = new diet::TokenCloseIF("{//}");
+            diet::TemplateToken* closeIfToken = new diet::TokenCloseIF("{//}");
             closeIfToken->setStartPos(pos);
             closeIfToken->setEndPos(pos + 4);
             tokens.push_back(closeIfToken);
@@ -72,7 +72,7 @@ namespace diet {
                 throw std::runtime_error("incorrect template");
             }
 
-            auto paramToken = new diet::TokenParam(input.substr(pos, closingPos + 2 - pos));
+            diet::TemplateToken* paramToken = new diet::TokenParam(input.substr(pos, closingPos + 2 - pos));
             paramToken->setStartPos(pos);
             paramToken->setEndPos(closingPos + 2);
             tokens.push_back(paramToken);
@@ -86,7 +86,7 @@ namespace diet {
             if (pos == std::string::npos) {
                 throw std::runtime_error("incorrect template. Miss next controller");
             }
-            auto controllerToken = new diet::TokenController(input.substr(pos, input.length() - pos));
+            diet::TemplateToken* controllerToken = new diet::TokenController(input.substr(pos, input.length() - pos));
             controllerToken->setStartPos(pos);
             controllerToken->setEndPos(input.length());
             tokens.push_back(controllerToken);
