@@ -6,6 +6,7 @@
 #define DIETPROJECT_VIEWENGINE_H
 
 #include "DietModel.h"
+#include "TemplateToken.h"
 
 namespace diet {
 
@@ -14,9 +15,9 @@ namespace diet {
         static void render(const std::string& viewName, const diet::DietModel& model);
         static void clearConsole();
     private:
-        static std::string parseTemplate(const std::string& templateString, const DietModel& model);
-        static void setNextController(const std::string& templateString);
-        static std::string parseIf(const std::string& templateString, const DietModel& model);
+        static std::string parseTemplate(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
+        static void parseParamTokens(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
+        static void parseIf(std::vector<diet::TemplateToken*>& tokens, const DietModel& model);
     };
 
 } // diet

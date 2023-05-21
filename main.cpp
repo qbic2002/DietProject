@@ -11,16 +11,26 @@
 #include "DietControllerInitWeight.h"
 #include "DietControllerSetWeight.h"
 #include "DietControllerIdealWeight.h"
+#include "TemplateTokenizer.h"
 
 //using json = nlohmann::json;
 //using namespace nlohmann::literals;
 
 int main() {
 
+//    std::string input = "Your ideal weight is {{idealWeight}}\n"
+//                        "{#equalOrLess#}\n"
+//                        "Your current weight {{initWeight}} is less or equal to ideal, but you still can get info about diets!{//}\n"
+//                        "\n"
+//                        "$exit$";
+//    std::vector<diet::TemplateToken*> tokens;
+//    diet::TemplateTokenizer::tokenize(input, tokens);
+//    std::cout << "\n";
+
     diet::DietApp::getInstance()->init();
     diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
 
-    //    diet::DietApp::getInstance()->registerController("test", new diet::Test());
+//    diet::DietApp::getInstance()->registerController("test", new diet::Test());
     diet::DietApp::getInstance()->registerController("greeting", new diet::DietControllerGreeting());
     diet::DietApp::getInstance()->registerController("initHeight", new diet::DietControllerInitHeight());
     diet::DietApp::getInstance()->registerController("setHeight", new diet::DietControllerSetHeight());

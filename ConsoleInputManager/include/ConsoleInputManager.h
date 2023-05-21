@@ -18,17 +18,31 @@ namespace diet {
         void start();
         void idle();
 
-        bool anyKey;
-        std::string controllerName = "greeting";
 
-        std::string lastViewName;
-        diet::DietModel lastModel;
+
+        void setAnyKey(bool anyKey);
+        void setControllerName(const std::string& controllerName);
+        void setLastViewName(const std::string& lastViewName);
+        void setLastModel(const DietModel& lastModel);
+
+        bool isAnyKey() const;
+        const std::string& getControllerName() const;
+        const std::string& getLastViewName() const;
+        const DietModel& getLastModel() const;
+
+
     private:
         void callController(const std::string& params = "") const;
         void waitInput();
 
         void clearConsole() const;
         void pauseConsole() const;
+
+        bool anyKey_;
+        std::string controllerName_ = "greeting";
+
+        std::string lastViewName_;
+        diet::DietModel lastModel_;
     };
 }
 
