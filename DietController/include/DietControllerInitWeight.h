@@ -10,7 +10,7 @@
 namespace diet {
     class DietControllerInitWeight : public DietController {
     public:
-        void invoke(const std::string& params) const override;
+        void invoke(const std::wstring &params) const override;
     };
 }
 

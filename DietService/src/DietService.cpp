@@ -2,7 +2,12 @@
 // Created by golov on 19.05.2023.
 //
 
+#include <stdexcept>
 #include "DietService.h"
+#include "ProteinDiet.h"
+#include "SheldonDiet.h"
+#include "ProteinCarbohydrateDiet.h"
+#include "BuckwheatDiet.h"
 
 namespace diet {
     float DietService::calculateIdealWeight() {
@@ -27,10 +32,28 @@ namespace diet {
         initialWeight_ = initialWeight;
     }
 
-    const std::string& DietService::getName() const {
+    const std::wstring & DietService::getName() const {
         return name_;
     }
-    void DietService::setName(const std::string& name) {
+    void DietService::setName(const std::wstring &name) {
         name_ = name;
+    }
+
+    int DietService::getDiet() const {
+        return diet_;
+    }
+
+    void DietService::setDiet(int diet) {
+        if (1 <= diet && diet <= 4) {
+            diet_ = diet;
+        } else {
+            throw std::runtime_error("incorrect input");
+        }
+    }
+
+    Diet * DietService::chooseDiet(int diet) {
+        setDiet(diet);
+
+        return diets_[diet - 1];
     }
 } // diet

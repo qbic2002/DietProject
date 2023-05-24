@@ -7,7 +7,7 @@
 
 namespace diet{
 
-    void DietControllerInitWeight::invoke(const std::string& params) const {
+    void DietControllerInitWeight::invoke(const std::wstring &params) const {
         diet::ViewEngine::render("initWeight", {});
     }
 }

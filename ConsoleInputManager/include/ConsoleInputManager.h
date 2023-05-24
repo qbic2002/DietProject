@@ -32,7 +32,7 @@ namespace diet {
 
 
     private:
-        void callController(const std::string& params = "") const;
+        void callController(const std::wstring &params = L"") const;
         void waitInput();
 
         void clearConsole() const;

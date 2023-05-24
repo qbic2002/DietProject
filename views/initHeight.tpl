@@ -1,2 +1,2 @@
-Please enter your height (in cm):
+{{name}}, введите свой рост (в см):
 $setHeight

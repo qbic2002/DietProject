@@ -8,7 +8,7 @@
 #include "DietApp.h"
 
 namespace diet {
-    void DietControllerIdealWeight::invoke(const std::string& params) const {
+    void DietControllerIdealWeight::invoke(const std::wstring &params) const {
         diet::DietService* dietService = diet::DietApp::getInstance()->getDietService();
 
         dietService->calculateIdealWeight();

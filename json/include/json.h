@@ -7557,7 +7557,7 @@ return true;
             token_type::parse_error otherwise
 
     @note In case of errors, variable error_message contains a textual
-          description.
+          description_.
     */
 token_type scan_string()
 {
@@ -8924,7 +8924,7 @@ std::vector<char_type> token_string {};
 /// buffer for variable-length tokens (numbers, strings)
 string_t token_buffer {};
 
-/// a description of occurred lexer errors
+/// a description_ of occurred lexer errors
 const char* error_message = "";
 
 // number values
@@ -16822,7 +16822,7 @@ http://florian.loitsch.com/publications (bench.tar.gz).
 
 The code is distributed under the MIT license, Copyright (c) 2009 Florian Loitsch.
 
-For a detailed description of the algorithm see:
+For a detailed description_ of the algorithm see:
 
 [1] Loitsch, "Printing Floating-Point Numbers Quickly and Accurately with
     Integers", Proceedings of the ACM SIGPLAN 2010 Conference on Programming

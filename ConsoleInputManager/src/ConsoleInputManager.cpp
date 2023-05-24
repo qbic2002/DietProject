@@ -7,6 +7,7 @@
 #include "ConsoleInputManager.h"
 #include "DietApp.h"
 #include "ViewEngine.h"
+#include "FileUtils.h"
 
 void diet::ConsoleInputManager::start() {
     callController();
@@ -26,7 +27,7 @@ void diet::ConsoleInputManager::idle() {
     }
 }
 
-void diet::ConsoleInputManager::callController(const std::string& params) const {
+void diet::ConsoleInputManager::callController(const std::wstring &params) const {
     DietController* controller = diet::DietApp::getInstance()->findController(controllerName_);
     controller->invoke(params);
 }
@@ -34,10 +35,11 @@ void diet::ConsoleInputManager::callController(const std::string& params) const 
 void diet::ConsoleInputManager::waitInput() {
     while (true) {
         try {
-            std::string params;
-            std::cin >> params;
+            std::wstring params;
+            std::wcin >> params;
             callController(params);
         } catch (...) {
+
             clearConsole();
             diet::ViewEngine::render(lastViewName_, lastModel_);
             continue;

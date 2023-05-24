@@ -6,7 +6,7 @@
 #include "ViewEngine.h"
 
 namespace diet {
-    void DietControllerInitName::invoke(const std::string& params) const {
+    void DietControllerInitName::invoke(const std::wstring &params) const {
         diet::ViewEngine::render("initName", {});
     }
 } // diet

@@ -7,7 +7,7 @@
 #include "DietApp.h"
 
 namespace diet {
-    void DietControllerSetName::invoke(const std::string& params) const {
+    void DietControllerSetName::invoke(const std::wstring &params) const {
         diet::DietService* dietService = diet::DietApp::getInstance()->getDietService();
         dietService->setName(params);
         redirect("initHeight");

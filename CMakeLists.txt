@@ -17,6 +17,7 @@ include_directories(DietService/include)
 include_directories(DietViews/include)
 include_directories(DietModels/include)
 include_directories(ConsoleInputManager/include)
+include_directories(Diets/include)
 
 add_executable(DietProject
         main.cpp
@@ -45,6 +46,14 @@ add_executable(DietProject
         DietViews/src/TokenContainer.cpp
         DietController/src/DietControllerInitName.cpp
         DietController/src/DietControllerSetName.cpp
-        )
+        DietController/src/DietControllerShowDiets.cpp
+        DietController/src/DietControllerChooseDiet.cpp
+        Diets/src/BuckwheatDiet.cpp
+        Diets/src/ProteinCarbohydrateDiet.cpp
+        Diets/src/ProteinDiet.cpp
+        Diets/src/SheldonDiet.cpp
+        DietController/src/DietControllerShowDiet.cpp
+        DietController/src/DietControllerShowPeriods.cpp
+        DietController/src/DietControllerConfirmDiet.cpp DietController/include/DietControllerConfirmDiet.h)
 
 target_link_libraries(DietProject PRIVATE nlohmann_json::nlohmann_json)

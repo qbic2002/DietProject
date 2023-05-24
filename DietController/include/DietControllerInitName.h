@@ -11,7 +11,7 @@ namespace diet {
 
     class DietControllerInitName : public diet::DietController {
     public:
-        void invoke(const std::string& params) const override;
+        void invoke(const std::wstring &params) const override;
     };
 
 } // diet

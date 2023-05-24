@@ -11,11 +11,11 @@
 namespace diet {
     class DietController {
     public:
-        virtual void invoke(const std::string& params) const = 0;
+        virtual void invoke(const std::wstring &params) const = 0;
         virtual ~DietController() = default;
 
     protected:
-        void redirect(const std::string& controllerName, const std::string& params = "") const;
+        void redirect(const std::string& controllerName, const std::wstring &params = L"") const;
     };
 }
 

@@ -5,7 +5,6 @@
 #include "ViewEngine.h"
 #include "DietControllerGreeting.h"
 #include "DietControllerExit.h"
-#include "Test.h"
 #include "DietControllerInitHeight.h"
 #include "DietControllerSetHeight.h"
 #include "DietControllerInitWeight.h"
@@ -14,6 +13,11 @@
 #include "TemplateTokenizer.h"
 #include "DietControllerInitName.h"
 #include "DietControllerSetName.h"
+#include "DietControllerShowDiets.h"
+#include "DietControllerChooseDiet.h"
+#include "DietControllerShowDiet.h"
+#include "DietControllerShowPeriods.h"
+#include "DietControllerConfirmDiet.h"
 
 //using json = nlohmann::json;
 //using namespace nlohmann::literals;
@@ -22,7 +26,7 @@ int main() {
 
 //    std::string input = "Your ideal weight is {{idealWeight}}\n"
 //                        "{#equalOrLess#}\n"
-//                        "Your current weight {{initWeight}} is less or equal to ideal, but you still can get info about diets!{!!}sdjfghs{//}\n"
+//                        "Your current weight {{initWeight}} is less or equal to ideal, but you still can get info about diets_!{!!}sdjfghs{//}\n"
 //                        "\n"
 //                        "$exit$";
 //    diet::TokenContainer tokens;
@@ -31,13 +35,8 @@ int main() {
 
 
     setlocale(LC_ALL, "Russian");
-//    std::wstring m = L"привет";
-//    std::wcout << m << std::endl;
-//    system("pause");
-//    return 0;
-
     diet::DietApp::getInstance()->init();
-    diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
+    diet::DietApp::getInstance()->setViewDir(R"(C:\Users\msi\CLionProjects\DietProject\views)");
 
 //    diet::DietApp::getInstance()->registerController("test", new diet::Test());
     diet::DietApp::getInstance()->registerController("greeting", new diet::DietControllerGreeting());
@@ -48,6 +47,11 @@ int main() {
     diet::DietApp::getInstance()->registerController("initWeight", new diet::DietControllerInitWeight());
     diet::DietApp::getInstance()->registerController("setWeight", new diet::DietControllerSetWeight());
     diet::DietApp::getInstance()->registerController("idealWeight", new diet::DietControllerIdealWeight());
+    diet::DietApp::getInstance()->registerController("showDiets", new diet::DietControllerShowDiets());
+    diet::DietApp::getInstance()->registerController("chooseDiet", new diet::DietControllerChooseDiet());
+    diet::DietApp::getInstance()->registerController("showDiet", new diet::DietControllerShowDiet());
+    diet::DietApp::getInstance()->registerController("confirmDiet", new diet::DietControllerConfirmDiet());
+    diet::DietApp::getInstance()->registerController("showPeriods", new diet::DietControllerShowPeriods());
     diet::DietApp::getInstance()->registerController("exit", new diet::DietControllerExit());
 
     diet::DietApp::getInstance()->start();
