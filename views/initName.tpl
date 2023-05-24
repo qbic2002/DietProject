@@ -1,2 +1,2 @@
-Please enter your name:
+Введите свое имя:
 $setName

@@ -1,4 +1,3 @@
-Hello! This is the Diet APP!
-Привет
+Привет, это приложение диеты!
 
 $initName$

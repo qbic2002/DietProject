@@ -1,5 +1,5 @@
-Your ideal weight is {{idealWeight}}
+Ваш иделаьный вес - {{idealWeight}}
 {#equalOrLess#}
-Your current weight {{initWeight}} is less or equal to ideal, but you still can get info about diets! {//}
+Ваш текущий вес {{initWeight}} меньше или равен идеальному, но вы все еще можете прочитать информацию про диеты! {//}
 
 $showDiets$

@@ -1,2 +1,2 @@
-Please enter your weight (in kg):
+Введите ваш вес (в кг):
 $setWeight
