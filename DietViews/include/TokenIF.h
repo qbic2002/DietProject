@@ -1,6 +1,4 @@
-//
-// Created by golov on 20.05.2023.
-//
+
 
 #ifndef DIETPROJECT_TOKENIF_H
 #define DIETPROJECT_TOKENIF_H
@@ -16,13 +14,13 @@ namespace diet {
 
         TokenType getType() const override;
 
-        std::wstring getParamName() const;
+        std::wstring getParamName() const; // имя шаблонного параметра
 
         int getPriority() const;
         void setPriority(int priority);
 
     private:
-        int priority_ = 0;
+        int priority_ = 0; // приоритет if
     };
 
 } // diet

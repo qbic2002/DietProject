@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #ifndef DIETPROJECT_VIEWENGINE_H
 #define DIETPROJECT_VIEWENGINE_H
@@ -13,12 +11,12 @@ namespace diet {
 
     class ViewEngine {
     public:
-        static void render(const std::string& viewName, const DietModel& model);
-        static void clearConsole();
+        static void render(const std::string& viewName, const DietModel& model); // рендеринг на консоль
+        static void clearConsole(); // очистка консоли
     private:
-        static std::wstring parseTemplate(diet::TokenContainer& tokens, const DietModel& model);
-        static void parseParamTokens(diet::TokenContainer& tokens, const DietModel& model);
-        static void parseIf(diet::TokenContainer& tokens, const DietModel& model);
+        static std::wstring parseTemplate(diet::TokenContainer& tokens, const DietModel& model); // парсинг шаблона
+        static void parseParamTokens(diet::TokenContainer& tokens, const DietModel& model); // парсинг параметров
+        static void parseIf(diet::TokenContainer& tokens, const DietModel& model); // парсинг ifов
     };
 
 } // diet

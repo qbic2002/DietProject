@@ -1,6 +1,4 @@
-//
-// Created by msi on 24.05.2023.
-//
+
 
 #ifndef DIETPROJECT_PROTEINDIET_H
 #define DIETPROJECT_PROTEINDIET_H

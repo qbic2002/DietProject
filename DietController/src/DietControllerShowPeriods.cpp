@@ -1,6 +1,4 @@
-//
-// Created by msi on 24.05.2023.
-//
+
 
 #include "DietControllerShowPeriods.h"
 #include "ViewEngine.h"

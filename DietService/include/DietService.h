@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #ifndef DIETPROJECT_DIETSERVICE_H
 #define DIETPROJECT_DIETSERVICE_H
@@ -18,9 +16,9 @@ namespace diet {
     public:
         DietService() = default;
 
-        float calculateIdealWeight();
+        float calculateIdealWeight(); // рассчет идеального веса
 
-        Diet *chooseDiet(int diet);
+        Diet *chooseDiet(int diet); // выбор диеты
 
         // getters
         unsigned int getHeight() const;
@@ -48,14 +46,14 @@ namespace diet {
         unsigned int height_; //height of the person in cm
         float initialWeight_; //weight of the person in kg
 
-        float idealWeight_;
+        float idealWeight_; // идеальный вес
 
-        int diet_;
+        int diet_; // номер диеты
 
-        std::wstring name_;
+        std::wstring name_; // имя человека
 
         diet::Diet *diets_[4] = {new diet::ProteinDiet(), new diet::SheldonDiet(), new diet::ProteinCarbohydrateDiet(),
-                                 new diet::BuckwheatDiet()};
+                                 new diet::BuckwheatDiet()}; // диеты
     };
 
 } // diet

@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #include <cstdlib>
 #include <iostream>
@@ -38,7 +36,7 @@ void diet::ConsoleInputManager::waitInput() {
             std::wstring params;
             std::wcin >> params;
             callController(params);
-        } catch (...) {
+        } catch (...) { // ловля ошибка
 
             clearConsole();
             diet::ViewEngine::render(lastViewName_, lastModel_);

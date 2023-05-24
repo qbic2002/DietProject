@@ -1,6 +1,4 @@
-//
-// Created by golov on 20.05.2023.
-//
+
 
 #ifndef DIETPROJECT_TEMPLATETOKEN_H
 #define DIETPROJECT_TEMPLATETOKEN_H
@@ -11,7 +9,7 @@ namespace diet {
 
     class TemplateToken {
     public:
-        enum TokenType {
+        enum TokenType { // перечисление типа токена
             CONTENT,
             IF,
             ELSE,
@@ -23,21 +21,24 @@ namespace diet {
 
         explicit TemplateToken(const std::wstring& string);
 
-        virtual TokenType getType() const = 0;
-        const std::wstring& getString() const;
+        virtual TokenType getType() const = 0; // тип токена
+        const std::wstring& getString() const; // строка токена (геттер)
         virtual ~TemplateToken() = default;
 
+        // геттеры
         size_t getStartPos() const;
-        void setStartPos(size_t startPos);
         size_t getEndPos() const;
+
+        // сеттеры
+        void setStartPos(size_t startPos);
         void setEndPos(size_t endPos);
 
 
     protected:
-        std::wstring string_;
+        std::wstring string_; // строка токена
 
-        std::size_t startPos_;
-        std::size_t endPos_;
+        std::size_t startPos_; // начальная позиция токена в строке
+        std::size_t endPos_; // конечная позиция токена в строке
     };
 
 }

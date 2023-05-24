@@ -1,6 +1,4 @@
-//
-// Created by golov on 20.05.2023.
-//
+
 
 #include "DietControllerIdealWeight.h"
 #include "ViewEngine.h"

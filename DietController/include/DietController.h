@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #ifndef DIETPROJECT_DIETCONTROLLER_H
 #define DIETPROJECT_DIETCONTROLLER_H
@@ -11,11 +9,11 @@
 namespace diet {
     class DietController {
     public:
-        virtual void invoke(const std::wstring &params) const = 0;
+        virtual void invoke(const std::wstring &params) const = 0; // метод вызова контроллера
         virtual ~DietController() = default;
 
     protected:
-        void redirect(const std::string& controllerName, const std::wstring &params = L"") const;
+        void redirect(const std::string& controllerName, const std::wstring &params = L"") const; // метод перенаправления запроса на другой контроллер
     };
 }
 

@@ -1,6 +1,4 @@
-//
-// Created by golov on 20.05.2023.
-//
+
 
 #ifndef DIETPROJECT_TEMPLATETOKENIZER_H
 #define DIETPROJECT_TEMPLATETOKENIZER_H
@@ -13,7 +11,7 @@ namespace diet {
 
     class TemplateTokenizer {
     public:
-        static void tokenize(const std::wstring& input, diet::TokenContainer& tokens);
+        static void tokenize(const std::wstring& input, diet::TokenContainer& tokens); // токенизация строки
     };
 
 }

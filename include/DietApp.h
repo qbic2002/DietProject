@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #ifndef DIETPROJECT_DIETAPP_H
 #define DIETPROJECT_DIETAPP_H
@@ -21,28 +19,28 @@ namespace diet {
         DietService* getDietService() const;
         ConsoleInputManager* getConsoleInputManager() const;
 
-        void registerController(const std::string& name, DietController* controller);
-        diet::DietController* findController(const std::string& name);
+        void registerController(const std::string& name, DietController* controller); // регистрация контроллера
+        diet::DietController* findController(const std::string& name); // поиск контроллера по имени
 
-        void setViewDir(const std::string& viewsDir);
-        std::filesystem::path findView(const std::string& viewName);
+        void setViewDir(const std::string& viewsDir); // задание значения папки с щаблонами
+        std::filesystem::path findView(const std::string& viewName); // поиск шаблона
 
-        static DietApp* getInstance();
-        void freeMemory();
+        static DietApp* getInstance(); // получение экземпляра класса DietApp (синглтон)
+        void freeMemory(); // очистка памяти
 
         ~DietApp();
 
     private:
         DietApp() = default;
 
-        diet::DietService* dietService_ = nullptr;
-        diet::ConsoleInputManager* consoleInputManager_ = nullptr;
+        diet::DietService* dietService_ = nullptr; // сервис
+        diet::ConsoleInputManager* consoleInputManager_ = nullptr; // менеджер ввода с консоли
 
-        std::filesystem::path viewsDir_;
+        std::filesystem::path viewsDir_; // путь до шаблона
 
-        std::unordered_map<std::string, diet::DietController*> controllers_;
+        std::unordered_map<std::string, diet::DietController*> controllers_; // хэш таблица с контроллерами и их именами
 
-        static DietApp* instance_;
+        static DietApp* instance_; // экземпляр класса DietApp
     };
 
 } // diet

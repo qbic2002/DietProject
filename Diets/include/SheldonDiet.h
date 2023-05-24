@@ -1,6 +1,4 @@
-//
-// Created by msi on 24.05.2023.
-//
+
 
 #ifndef DIETPROJECT_SHELDON_H
 #define DIETPROJECT_SHELDON_H

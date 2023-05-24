@@ -1,19 +1,12 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #include <stdexcept>
-#include <cmath>
 #include "DietService.h"
 #include "ProteinDiet.h"
-#include "SheldonDiet.h"
-#include "ProteinCarbohydrateDiet.h"
-#include "BuckwheatDiet.h"
 
 namespace diet {
     float DietService::calculateIdealWeight() {
         idealWeight_ = ((float)height_ - 110) * 1.15f;
-//        idealWeight_ = std::roundf(idealWeight_ / 0.1f) * 0.1f; // округляем до 0.1
         return idealWeight_;
     }
 

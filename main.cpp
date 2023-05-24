@@ -1,9 +1,6 @@
-#include <iostream>
 #include <Windows.h>
-#include "json.h"
 #include "DietApp.h"
 #include "FileUtils.h"
-#include "ViewEngine.h"
 #include "DietControllerGreeting.h"
 #include "DietControllerExit.h"
 #include "DietControllerInitHeight.h"
@@ -11,7 +8,6 @@
 #include "DietControllerInitWeight.h"
 #include "DietControllerSetWeight.h"
 #include "DietControllerIdealWeight.h"
-#include "TemplateTokenizer.h"
 #include "DietControllerInitName.h"
 #include "DietControllerSetName.h"
 #include "DietControllerShowDiets.h"
@@ -23,9 +19,6 @@
 #include "DietControllerChoosePeriod.h"
 #include "DietControllerReturnToDiets.h"
 
-//using json = nlohmann::json;
-//using namespace nlohmann::literals;
-
 int main() {
 
     setlocale(LC_ALL, "Russian");
@@ -33,7 +26,7 @@ int main() {
 
     diet::DietApp::getInstance()->init();
 
-    diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
+    diet::DietApp::getInstance()->setViewDir(R"(C:\Users\msi\CLionProjects\DietProject\views)");
 
     diet::DietApp::getInstance()->registerController("greeting", new diet::DietControllerGreeting());
     diet::DietApp::getInstance()->registerController("initName", new diet::DietControllerInitName());

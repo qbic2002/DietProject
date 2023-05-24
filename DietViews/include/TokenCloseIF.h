@@ -1,6 +1,4 @@
-//
-// Created by golov on 20.05.2023.
-//
+
 
 #ifndef DIETPROJECT_TOKENCLOSEIF_H
 #define DIETPROJECT_TOKENCLOSEIF_H
@@ -19,7 +17,7 @@ namespace diet {
         void setPriority(int priority);
 
     private:
-        int priority = 0;
+        int priority = 0; // приоритет if
     };
 
 } // diet

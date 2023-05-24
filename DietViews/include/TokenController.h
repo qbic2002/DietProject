@@ -1,6 +1,4 @@
-//
-// Created by golov on 21.05.2023.
-//
+
 
 #ifndef DIETPROJECT_TOKENCONTROLLER_H
 #define DIETPROJECT_TOKENCONTROLLER_H

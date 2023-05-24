@@ -1,6 +1,4 @@
-//
-// Created by golov on 19.05.2023.
-//
+
 
 #ifndef DIETPROJECT_CONSOLEINPUTMANAGER_H
 #define DIETPROJECT_CONSOLEINPUTMANAGER_H
@@ -16,15 +14,16 @@ namespace diet {
         ConsoleInputManager() = default;
 
         void start();
-        void idle();
+        void idle(); // ожидание ввода
 
 
-
+        // сеттеры
         void setAnyKey(bool anyKey);
         void setControllerName(const std::string& controllerName);
         void setLastViewName(const std::string& lastViewName);
         void setLastModel(const DietModel& lastModel);
 
+        // геттеры
         bool isAnyKey() const;
         const std::string& getControllerName() const;
         const std::string& getLastViewName() const;
@@ -32,11 +31,11 @@ namespace diet {
 
 
     private:
-        void callController(const std::wstring &params = L"") const;
-        void waitInput();
+        void callController(const std::wstring &params = L"") const; // вызов контроллера
+        void waitInput(); // ожидание ввода
 
-        void clearConsole() const;
-        void pauseConsole() const;
+        void clearConsole() const; // очистка консоли
+        void pauseConsole() const; // по сути вызов system("pause")
 
         bool anyKey_;
         std::string controllerName_ = "greeting";
