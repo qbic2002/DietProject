@@ -54,6 +54,7 @@ add_executable(DietProject
         Diets/src/SheldonDiet.cpp
         DietController/src/DietControllerShowDiet.cpp
         DietController/src/DietControllerShowPeriods.cpp
-        DietController/src/DietControllerConfirmDiet.cpp DietController/include/DietControllerConfirmDiet.h)
+        DietController/src/DietControllerConfirmDiet.cpp
+        )
 
 target_link_libraries(DietProject PRIVATE nlohmann_json::nlohmann_json)
