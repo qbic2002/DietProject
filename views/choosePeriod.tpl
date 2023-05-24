@@ -1,3 +1,3 @@
 Выберите период диеты - не более {{maxPeriod}} дней
 
-$exit$
+$choosePeriod

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include "json.h"
 #include "DietApp.h"
 #include "FileUtils.h"
@@ -18,6 +19,9 @@
 #include "DietControllerShowDiet.h"
 #include "DietControllerShowPeriods.h"
 #include "DietControllerConfirmDiet.h"
+#include "DietControllerAlreadyIdeal.h"
+#include "DietControllerChoosePeriod.h"
+#include "DietControllerReturnToDiets.h"
 
 //using json = nlohmann::json;
 //using namespace nlohmann::literals;
@@ -35,8 +39,9 @@ int main() {
 
 
     setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251);
     diet::DietApp::getInstance()->init();
-    diet::DietApp::getInstance()->setViewDir(R"(C:\Users\msi\CLionProjects\DietProject\views)");
+    diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
 
 //    diet::DietApp::getInstance()->registerController("test", new diet::Test());
     diet::DietApp::getInstance()->registerController("greeting", new diet::DietControllerGreeting());
@@ -52,6 +57,9 @@ int main() {
     diet::DietApp::getInstance()->registerController("showDiet", new diet::DietControllerShowDiet());
     diet::DietApp::getInstance()->registerController("confirmDiet", new diet::DietControllerConfirmDiet());
     diet::DietApp::getInstance()->registerController("showPeriods", new diet::DietControllerShowPeriods());
+    diet::DietApp::getInstance()->registerController("alreadyIdeal", new diet::DietControllerAlreadyIdeal());
+    diet::DietApp::getInstance()->registerController("choosePeriod", new diet::DietControllerChoosePeriod());
+    diet::DietApp::getInstance()->registerController("returnToDiets", new diet::DietControllerReturnToDiets());
     diet::DietApp::getInstance()->registerController("exit", new diet::DietControllerExit());
 
     diet::DietApp::getInstance()->start();

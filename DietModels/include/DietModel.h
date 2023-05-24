@@ -7,6 +7,7 @@
 
 #include <string>
 #include "json.h"
+#include "FileUtils.h"
 
 namespace diet {
 
@@ -16,12 +17,11 @@ namespace diet {
 
         template<class T>
         void setField(const std::wstring& fieldName, const T& value) {
-            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-            if (std::is_same<T, std::wstring>::value) {
-                jsonData_[converter.to_bytes(fieldName)] = converter.to_bytes(value);
-            } else {
-                jsonData_[converter.to_bytes(fieldName)] = value;
-            }
+            jsonData_[utils::to_string(fieldName)] = value;
+        }
+
+        void setField(const std::wstring& fieldName, const std::wstring& value) {
+            jsonData_[utils::to_string(fieldName)] = utils::to_string(value);
         }
 
     private:

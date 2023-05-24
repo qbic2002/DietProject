@@ -10,6 +10,11 @@ namespace diet {
         std::string value = to_string((jsonData_[utils::to_string(fieldName)]));
 
         std::wstring wValue = utils::to_wstring(value);
+        std::size_t pos = wValue.find(L"\\n");
+        while (pos != std::wstring::npos) {
+            wValue.replace(pos, 2, L"\n");
+            pos = wValue.find(L"\\n");
+        }
         if (wValue.starts_with(L'"') && wValue.ends_with(L'"'))
             return {wValue.begin() + 1, wValue.end() - 1}; // return string without first and last char
         return wValue;
