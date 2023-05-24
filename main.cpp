@@ -29,6 +29,13 @@ int main() {
 //    diet::TemplateTokenizer::tokenize(input, tokens);
 //    std::cout << "\n";
 
+
+    setlocale(LC_ALL, "Russian");
+//    std::wstring m = L"привет";
+//    std::wcout << m << std::endl;
+//    system("pause");
+//    return 0;
+
     diet::DietApp::getInstance()->init();
     diet::DietApp::getInstance()->setViewDir(R"(D:\CPP\DietProject\views)");
 

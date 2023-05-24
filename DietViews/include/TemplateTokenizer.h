@@ -13,7 +13,7 @@ namespace diet {
 
     class TemplateTokenizer {
     public:
-        static void tokenize(const std::string& input, diet::TokenContainer & tokens);
+        static void tokenize(const std::wstring& input, diet::TokenContainer& tokens);
     };
 
 }

@@ -21,17 +21,17 @@ namespace diet {
         diet::DietApp::getInstance()->getConsoleInputManager()->setLastViewName(viewName);
         diet::DietApp::getInstance()->getConsoleInputManager()->setLastModel(model);
 
-        std::string templateString = utils::readFile(diet::DietApp::getInstance()->findView(viewName).string());
+        std::wstring templateString = utils::readFile(diet::DietApp::getInstance()->findView(viewName).string());
         diet::TokenContainer tokens;
         diet::TemplateTokenizer::tokenize(templateString, tokens);
 
-        std::string renderString = parseTemplate(tokens, model);
+        std::wstring renderString = parseTemplate(tokens, model);
 
         clearConsole();
-        std::cout << renderString;
+        std::wcout << renderString;
     }
 
-    std::string ViewEngine::parseTemplate(diet::TokenContainer& tokens, const DietModel& model) {
+    std::wstring ViewEngine::parseTemplate(diet::TokenContainer& tokens, const DietModel& model) {
         parseParamTokens(tokens, model);
         parseIf(tokens, model);
 
@@ -42,12 +42,12 @@ namespace diet {
         auto controllerToken = (diet::TokenController*) tokens[tokens.size() - 1];
 
         bool anyKey = controllerToken->getAnyKey();
-        std::string controllerName = controllerToken->getControllerName();
+        std::wstring controllerName = controllerToken->getControllerName();
 
         diet::DietApp::getInstance()->getConsoleInputManager()->setAnyKey(anyKey);
-        diet::DietApp::getInstance()->getConsoleInputManager()->setControllerName(controllerName);
+        diet::DietApp::getInstance()->getConsoleInputManager()->setControllerName(utils::to_string(controllerName));
 
-        std::string renderString;
+        std::wstring renderString;
         for (auto& token: tokens) {
             if (token->getType() != TemplateToken::TokenType::CONTROLLER) {
                 renderString.append(token->getString());
@@ -61,7 +61,7 @@ namespace diet {
         for (auto& token: tokens) {
             if (token->getType() == TemplateToken::TokenType::PARAM) {
                 auto paramToken = (diet::TokenParam*) token;
-                std::string value = model.getField(paramToken->getParamName());
+                std::wstring value = model.getField(paramToken->getParamName());
                 delete token;
                 token = new diet::TokenContent(value);
             }
@@ -113,7 +113,7 @@ namespace diet {
             }
 
             auto ifToken = (diet::TokenIF*) tokens[maxInd];
-            std::string value = model.getField(ifToken->getParamName());
+            std::wstring value = model.getField(ifToken->getParamName());
             int elseInd = -1;
             for (int i = maxInd; i < tokens.size(); ++i) {
                 auto token = tokens[i];
@@ -141,8 +141,8 @@ namespace diet {
                 throw std::runtime_error("incorrect template");
             }
 
-            std::string replaceString;
-            if (value == "true") {
+            std::wstring replaceString;
+            if (value == L"true") {
                 if (elseInd == -1) {
                     for (int i = maxInd + 1; i < closeIfInd; ++i) {
                         replaceString.append(tokens[i]->getString());
@@ -154,7 +154,7 @@ namespace diet {
                     }
                 }
             }
-            if (value == "false") {
+            if (value == L"false") {
                 if (elseInd != -1) {
                     for (int i = elseInd + 1; i < closeIfInd; ++i) {
                         replaceString.append(tokens[i]->getString());

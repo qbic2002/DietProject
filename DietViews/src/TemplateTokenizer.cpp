@@ -14,14 +14,14 @@
 
 namespace diet {
 
-    void TemplateTokenizer::tokenize(const std::string& input, diet::TokenContainer& tokens) {
+    void TemplateTokenizer::tokenize(const std::wstring& input, diet::TokenContainer& tokens) {
         std::size_t pos = 0;
         while (true) {
-            pos = input.find("{#", pos);
+            pos = input.find(L"{#", pos);
             if (pos == std::string::npos) {
                 break;
             }
-            std::size_t closingPos = input.find("#}", pos);
+            std::size_t closingPos = input.find(L"#}", pos);
             if (closingPos == std::string::npos) {
                 throw std::runtime_error("incorrect template");
             }
@@ -35,12 +35,12 @@ namespace diet {
 
         pos = 0;
         while (true) {
-            pos = input.find("{!!}", pos);
+            pos = input.find(L"{!!}", pos);
             if (pos == std::string::npos) {
                 break;
             }
 
-            diet::TemplateToken* elseToken = new diet::TokenElse("{!!}");
+            diet::TemplateToken* elseToken = new diet::TokenElse(L"{!!}");
             elseToken->setStartPos(pos);
             elseToken->setEndPos(pos + 4);
             tokens.push_back(elseToken);
@@ -49,12 +49,12 @@ namespace diet {
 
         pos = 0;
         while (true) {
-            pos = input.find("{//}", pos);
+            pos = input.find(L"{//}", pos);
             if (pos == std::string::npos) {
                 break;
             }
 
-            diet::TemplateToken* closeIfToken = new diet::TokenCloseIF("{//}");
+            diet::TemplateToken* closeIfToken = new diet::TokenCloseIF(L"{//}");
             closeIfToken->setStartPos(pos);
             closeIfToken->setEndPos(pos + 4);
             tokens.push_back(closeIfToken);
@@ -63,11 +63,11 @@ namespace diet {
 
         pos = 0;
         while (true) {
-            pos = input.find("{{", pos);
+            pos = input.find(L"{{", pos);
             if (pos == std::string::npos) {
                 break;
             }
-            std::size_t closingPos = input.find("}}", pos);
+            std::size_t closingPos = input.find(L"}}", pos);
             if (closingPos == std::string::npos) {
                 throw std::runtime_error("incorrect template");
             }
@@ -82,7 +82,7 @@ namespace diet {
         pos = 0;
 
         {
-            pos = input.find("\n$", pos);
+            pos = input.find(L"\n$", pos);
             if (pos == std::string::npos) {
                 throw std::runtime_error("incorrect template. Miss next controller");
             }

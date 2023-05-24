@@ -10,10 +10,10 @@
 namespace diet {
     class TokenParam : public diet::TemplateToken {
     public:
-        explicit TokenParam(const std::string& string);
+        explicit TokenParam(const std::wstring& string);
 
         TokenType getType() const override;
-        std::string getParamName() const;
+        std::wstring getParamName() const;
     };
 }
 

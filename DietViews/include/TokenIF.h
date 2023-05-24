@@ -12,11 +12,11 @@ namespace diet {
 
     class TokenIF : public TemplateToken {
     public:
-        explicit TokenIF(const std::string& string);
+        explicit TokenIF(const std::wstring& string);
 
         TokenType getType() const override;
 
-        std::string getParamName() const;
+        std::wstring getParamName() const;
 
         int getPriority() const;
         void setPriority(int priority);

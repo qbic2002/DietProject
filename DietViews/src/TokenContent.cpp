@@ -5,11 +5,8 @@
 #include "TokenContent.h"
 
 namespace diet {
-    TokenContent::TokenContent(const std::string& content) : TemplateToken(content) {}
+    TokenContent::TokenContent(const std::wstring& content) : TemplateToken(content) {}
 
-    const std::string& TokenContent::getContent() const {
-        return string_;
-    }
 
     TemplateToken::TokenType TokenContent::getType() const {
         return CONTENT;

@@ -15,9 +15,9 @@ namespace diet {
         bool equalOrLess = dietService->getInitialWeight() <= dietService->getIdealWeight();
 
         diet::DietModel model;
-        model.setField("equalOrLess", equalOrLess);
-        model.setField("initWeight", dietService->getInitialWeight());
-        model.setField("idealWeight", dietService->getIdealWeight());
+        model.setField(L"equalOrLess", equalOrLess);
+        model.setField(L"initWeight", dietService->getInitialWeight());
+        model.setField(L"idealWeight", dietService->getIdealWeight());
 
         diet::ViewEngine::render("idealWeight", model);
     }

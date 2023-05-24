@@ -11,9 +11,9 @@ namespace diet {
 
     class TokenController : public diet::TemplateToken {
     public:
-        explicit TokenController(const std::string& string);
+        explicit TokenController(const std::wstring& string);
         TokenType getType() const override;
-        std::string getControllerName() const;
+        std::wstring getControllerName() const;
         bool getAnyKey() const;
     };
 

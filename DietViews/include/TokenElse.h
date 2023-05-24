@@ -11,7 +11,7 @@ namespace diet {
 
     class TokenElse : public TemplateToken {
     public:
-        explicit TokenElse(const std::string& string);
+        explicit TokenElse(const std::wstring& string);
 
         TokenType getType() const override;
 

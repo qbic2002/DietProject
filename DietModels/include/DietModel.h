@@ -12,12 +12,18 @@ namespace diet {
 
     class DietModel {
     public:
-        std::string getField(const std::string& fieldName) const;
+        std::wstring getField(const std::wstring& fieldName) const;
 
         template<class T>
-        void setField(const std::string& fieldName, const T& value){
-            jsonData_[fieldName] = value;
+        void setField(const std::wstring& fieldName, const T& value) {
+            std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+            if (std::is_same<T, std::wstring>::value) {
+                jsonData_[converter.to_bytes(fieldName)] = converter.to_bytes(value);
+            } else {
+                jsonData_[converter.to_bytes(fieldName)] = value;
+            }
         }
+
     private:
         nlohmann::json jsonData_{};
     };

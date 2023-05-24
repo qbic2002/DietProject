@@ -4,7 +4,7 @@
 
 #include "TemplateToken.h"
 
-diet::TemplateToken::TemplateToken(const std::string& string) : string_(string) {}
+diet::TemplateToken::TemplateToken(const std::wstring& string) : string_(string) {}
 
 size_t diet::TemplateToken::getStartPos() const {
     return startPos_;
@@ -22,6 +22,6 @@ void diet::TemplateToken::setEndPos(size_t endPos) {
     TemplateToken::endPos_ = endPos;
 }
 
-const std::string& diet::TemplateToken::getString() const {
+const std::wstring& diet::TemplateToken::getString() const {
     return string_;
 }

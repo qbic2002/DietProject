@@ -5,7 +5,7 @@
 #include "TokenElse.h"
 
 namespace diet {
-    TokenElse::TokenElse(const std::string& string) : TemplateToken(string) {}
+    TokenElse::TokenElse(const std::wstring& string) : TemplateToken(string) {}
 
     TemplateToken::TokenType TokenElse::getType() const {
         return ELSE;

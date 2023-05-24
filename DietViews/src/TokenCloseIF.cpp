@@ -5,7 +5,7 @@
 #include "TokenCloseIF.h"
 
 namespace diet {
-    TokenCloseIF::TokenCloseIF(const std::string& string) : TemplateToken(string) {}
+    TokenCloseIF::TokenCloseIF(const std::wstring& string) : TemplateToken(string) {}
 
 
     TemplateToken::TokenType TokenCloseIF::getType() const {

@@ -13,10 +13,10 @@ namespace diet {
 
     class ViewEngine {
     public:
-        static void render(const std::string& viewName, const diet::DietModel& model);
+        static void render(const std::string& viewName, const DietModel& model);
         static void clearConsole();
     private:
-        static std::string parseTemplate(diet::TokenContainer& tokens, const DietModel& model);
+        static std::wstring parseTemplate(diet::TokenContainer& tokens, const DietModel& model);
         static void parseParamTokens(diet::TokenContainer& tokens, const DietModel& model);
         static void parseIf(diet::TokenContainer& tokens, const DietModel& model);
     };

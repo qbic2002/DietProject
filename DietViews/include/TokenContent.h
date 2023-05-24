@@ -12,9 +12,7 @@ namespace diet {
 
     class TokenContent : public TemplateToken {
     public:
-        explicit TokenContent(const std::string& content);
-
-        const std::string& getContent() const;
+        explicit TokenContent(const std::wstring& content);
 
         TokenType getType() const override;
 

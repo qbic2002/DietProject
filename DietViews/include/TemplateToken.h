@@ -21,10 +21,10 @@ namespace diet {
         };
 
 
-        explicit TemplateToken(const std::string& string);
+        explicit TemplateToken(const std::wstring& string);
 
         virtual TokenType getType() const = 0;
-        const std::string& getString() const;
+        const std::wstring& getString() const;
         virtual ~TemplateToken() = default;
 
         size_t getStartPos() const;
@@ -34,7 +34,7 @@ namespace diet {
 
 
     protected:
-        std::string string_;
+        std::wstring string_;
 
         std::size_t startPos_;
         std::size_t endPos_;

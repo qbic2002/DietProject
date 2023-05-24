@@ -3,12 +3,15 @@
 //
 
 #include "DietModel.h"
+#include "FileUtils.h"
 
 namespace diet {
-    std::string DietModel::getField(const std::string& fieldName) const {
-        std::string value = to_string(jsonData_[fieldName]);
-        if (value.starts_with('"') && value.ends_with('"'))
-            return {value.begin() + 1, value.end() - 1}; // return string without first and last char
-        return value;
+    std::wstring DietModel::getField(const std::wstring& fieldName) const {
+        std::string value = to_string((jsonData_[utils::to_string(fieldName)]));
+
+        std::wstring wValue = utils::to_wstring(value);
+        if (wValue.starts_with(L'"') && wValue.ends_with(L'"'))
+            return {wValue.begin() + 1, wValue.end() - 1}; // return string without first and last char
+        return wValue;
     }
 } // diet

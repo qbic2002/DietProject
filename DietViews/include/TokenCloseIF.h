@@ -11,7 +11,7 @@ namespace diet {
 
     class TokenCloseIF : public TemplateToken {
     public:
-        explicit TokenCloseIF(const std::string& string);
+        explicit TokenCloseIF(const std::wstring& string);
 
         TokenType getType() const override;
 

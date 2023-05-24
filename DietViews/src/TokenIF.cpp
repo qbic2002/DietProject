@@ -5,13 +5,13 @@
 #include "TokenIF.h"
 
 namespace diet {
-    TokenIF::TokenIF(const std::string& string) : TemplateToken(string) {}
+    TokenIF::TokenIF(const std::wstring& string) : TemplateToken(string) {}
 
     TemplateToken::TokenType TokenIF::getType() const {
         return IF;
     }
 
-    std::string TokenIF::getParamName() const {
+    std::wstring TokenIF::getParamName() const {
         return string_.substr(2, string_.length() - 4);
     }
 

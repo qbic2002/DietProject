@@ -5,13 +5,13 @@
 #include "TokenController.h"
 
 namespace diet {
-    TokenController::TokenController(const std::string& string) : TemplateToken(string) {}
+    TokenController::TokenController(const std::wstring& string) : TemplateToken(string) {}
 
     TemplateToken::TokenType TokenController::getType() const {
         return CONTROLLER;
     }
 
-    std::string TokenController::getControllerName() const {
+    std::wstring TokenController::getControllerName() const {
         if (string_.ends_with('$')){
             return string_.substr(2, string_.length() - 3);
         }
